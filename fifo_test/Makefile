@@ -1,10 +1,10 @@
 CC=gcc
 CFLAGS=-I. -lm
-DEPS = rnn.h
-OBJ = c_fifo.o rnn.o 
+DEPS = c_fifo.h
+OBJ = c_fifo.o 
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-main: $(OBJ)
+c_fifo: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
