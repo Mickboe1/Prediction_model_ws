@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h> 
-#include <rnn.h>
+// #include <rnn.h>
 
 int message_counter = 0;
 int fd, nread;

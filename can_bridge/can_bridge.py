@@ -58,13 +58,17 @@ class can_manager:
 
         # Printing ESC status message to stdout in human-readable YAML format.
         # node.add_handler(uavcan.equipment.esc.Status, lambda msg: print(uavcan.to_yaml(msg)))
-        self.node.add_handler(pyuavcan_v0.equipment.esc.Status, lambda msg: self.process_message(pyuavcan_v0.to_yaml(msg)))
+        self.node.add_handler(pyuavcan_v0.equipment.esc.Status, lambda msg: self.process_message_status(pyuavcan_v0.to_yaml(msg)))
+        self.node.add_handler(pyuavcan_v0.equipment.esc.RawCommand, lambda msg: self.process_message_command(pyuavcan_v0.to_yaml(msg)))
         print("end initializer")
 
     def get_device_path(self):
         return '/dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_bc97f94c52c5e711b9298568f41b81de-if00-port0'
 
-    def process_message(self, msg):
+    def process_message_command(self, msg):
+        print(msg)
+
+    def process_message_status(self, msg):
         t, v, c, rpm, temp = 0, 0, 0, 0 ,0
         for line in msg.split('\n'):
             splitted_line = line.split(':')
