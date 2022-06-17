@@ -31,12 +31,6 @@ void read_data()
             pt = strtok (NULL, ",");
         }
         data_counter = 0;
-        printf("%d ", message_counter);
-        for(int i = 0; i < 6; i++)
-        {
-            printf("%f,", data[front_pointer][i]);
-        }
-        printf("\n");
         message_counter++;
         front_pointer++;
         if (front_pointer == 5)
@@ -56,6 +50,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    open_write_file();
     while(1) {
         read_data();
         if(new_data)
